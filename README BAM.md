@@ -26,24 +26,51 @@ Example of BAMScore
 
 ## Definition of NBA Combine Protocols and Anthros
 
-Protocols (Athletic Tests - Power/Quickness)
-- Approach Vertical
-- Vertical Jump
-- 3/4 Court Sprint
-- 4-Way Agility
-- Reaction Shuttle
-- Bench Press - Max reps @ 185lbs
--- Not included in analysis because it's not a good indicator of basketball success
+bamid
+- Number randomly assigned to each athlete without knowing full name
 
-Anthros (Body Measurements - Length/Size)
-- Height
-- Weight
-- Body Comp
-- Wingspan
-- Reach
-- Hand Length
-- Hand Width
+bamscore
+- Single Numerical Value that measures and benchmarks athletic performence
+- "Athletic SAT Score"
+- Standardized athletic assessment that gives coaches insight into where players need improvement
 
+## Protocols (Athletic Tests)
+approach_vertical
+- running start, jump as high as you can
+
+vertical_jump
+- stationary start, jump as high as you can
+
+three_quarter_court_sprint
+- 75 ft straight sprint
+
+four_way_agility
+- run arouund 4 points in box, run back through
+
+reaction_shuttle
+- agility test - start in middle of box, run left, right, run back and finish through left line          
+
+## Anthros (Body Measurements)
+wingspan
+- horizontal distance from arms extended side to side
+
+reach
+- standing vertical reach
+
+height
+- how tall you are in inches
+
+weight
+- how much you weigh in pounds
+
+body_comp
+- body fat (varies in measurement methods)
+
+hand_length
+- vertical length of hand
+
+hand_width
+- horizontal length of hand
 
 ### # 1 Import Libraries
 - Pandas, NumPy, Matplotlib, SciPy, Seaborn, Plotly, Scikit-learn
@@ -55,29 +82,29 @@ Anthros (Body Measurements - Length/Size)
 
 <img src="images/clean_data.png"/>
 
-### # 3 Create Ranks (1-5) for protocols and anthros
-- Split scores into 5 groups based of standard deviations from mean
-
-<img src="images/av_rank.png"/>
-
-### # 4 Visualize Data
+### # 3 Visualize
 - Plotted ranks of all protocols and anthros to see distribution
 - Plotted to find more outliers/data that did not make sense
 
-<img src="images/av_rank_plot.png"/>
+<img src="images/av_rank.png"/>
 
-### # 5 More cleaning + scaling training data
+### # More Visualization - Violin Plots
+- Created 2 similar violin plots for each parameter with respect to BAMScore
+
+<img src="images/violin_plot.png"/>
+<img src="images/rs_violin.png"/>
+
+### # 4 More cleaning + scaling training data
 - Removed outliers
 - Scaled training data
 
 <img src="images/clean_4_way.png"/>
 <img src="images/clean_4_way_1.png"/>
 
-### # 6 Created Random Forest Regression Model + Classifier
+### # 5 Created OLS Regression Model
 - Goal: figure out most important features in model
 
-<img src="images/split_data.png"/>
-<img src="images/reg.png"/>
+### #6 Iterated Model and added random forrest model
 
 ### # 7 Feature Importance Analysis
 - Reaction Shuttle is the most important feature and highest delineator for rank
@@ -89,45 +116,13 @@ Anthros (Body Measurements - Length/Size)
 <img src="images/lmplot_reaction_shuttle.png"/>
 
 #### Feature Importance Results
-- INSERT
+- .53 r2 test and .63 train
 
 ### # 8 Scatter Matrix
 - Created scatter matrix across all ranked columns to try and visualize more trends by looking for 45 degree patterns
 
 <img src="images/scatter.png"/>
 
-### # 9 More Visualization - Violin Plots
-- Created 2 similar violin plots for each parameter with respect to BAMScore
-
-<img src="images/violin_plot.png"/>
-<img src="images/rs_violin.png"/>
-
-### # 10 Jarque-Bera Test + Threshold Identifier
-- Ran Jarque-Bera test, which is a goodness of fit test, that tests whether the sample data has a skewness and kurtosis matching a normal distribution
-- Created threshold identifier to visualize additional outliers I need to take out and find threshold cutoffs for each parameter
-
-<img src="images/thresh.png"/>
-<img src="images/thresh_1.png"/>
-
-### # 11 K-Nearest Neighbor Classifier
-- Ran classifier to determine which protocol contributes the most to BAMScore
-
-<img src="images/kn.png"/>
-
-### # 12 Decision Tree Regressor
-- Ran 3 different Decision Tree Regressors
-
-Import Libraries
-<img src="images/reg_lib.png"/>
-
-1) Relationship between all parameters - Anthros + Protocols
-<img src="images/reg_all.png"/>
-
-2) Relationship between protocols
-<img src="images/reg_protocols.png"/>
-
-3) Relationship between anthros
-<img src="images/reg_anthros.png"/>
 
 ### # 13 Conclusion and Insight
 - Vertical jump is not important for delineating BAMScores
@@ -136,4 +131,7 @@ Import Libraries
 - Shorter athletes are much better at agility/fast twitch based protocols
 
 
-
+## Future Work
+- add more iterations to models
+- spend time with more important features
+- test it via classifier instead
